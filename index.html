@@ -1,203 +1,223 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!-- Include a required theme -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-		<meta charset="utf-8">
-		<style type="text/css">
-			/* CSS Document */
-			* {
-				margin: 0;
-				padding: 0;
-			}
 
-			a {
-				text-decoration: none;
-			}
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
 
-			.clearfix:after {
-				content: "";
-				display: block;
-				height: 0;
-				visibility: hidden;
-				clear: both;
-			}
+		a {
+			text-decoration: none;
+		}
 
-			.clearfix {
-				*zoom: 1;
-			}
+		.clearfix:after {
+			content: "";
+			display: block;
+			height: 0;
+			visibility: hidden;
+			clear: both;
+		}
 
-			/* body {
+		.clearfix {
+			*zoom: 1;
+		}
+
+		/* body {
 				background: url(https://www.dmoe.cc/random.php) no-repeat;
 				background-size: cover;
 				background-attachment: fixed;
 			} */
-			.video {
-				position: absolute;
-			 	top: 0;
-			 	left: 0;
-				width: 100%;
-			 	z-index: -1;
-			}
 
-			.content {
-				width: 900px;
-				height: 500px;
-				margin: 200px auto 0 auto;
-				border-radius: 10px;
-				background-color: rgba(236, 236, 236, 0.59);
-				transition: all 1.0s;
-				/*box-shadow: 0px 0px 20px rgba(0,0,0,0.3);*/
-			}
+		.video-background {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			z-index: -1;
+		}
 
-			.content img {
-				float: left;
-				width: 200px;
-				height: 200px;
-				margin: 150px 0 0 80px;
-				border-radius: 100px;
+		.video-background video {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+			transform: translate(-50%, -50%);
+			object-fit: cover;
+		}
 
-			}
+		.content {
+			width: 900px;
+			height: 500px;
+			margin: 200px auto 0 auto;
+			border-radius: 10px;
+			background-color: rgba(236, 236, 236, 0.59);
+			transition: all 1.0s;
+			/*box-shadow: 0px 0px 20px rgba(0,0,0,0.3);*/
+		}
 
-			.content:hover {
-				box-shadow: 0px 0px 20px rgb(0, 162, 255);
-			}
+		.content img {
+			float: left;
+			width: 200px;
+			height: 200px;
+			margin: 150px 0 0 80px;
+			border-radius: 100px;
 
-			.content_r {
-				float: right;
-				width: 500px;
-				margin: 80px 60px 0 0;
-				/*	background-color: pink;*/
-			}
+		}
 
-			.content_l {
-				float: left;
-				width: 100%;
-				text-align: center;
-			}
+		.content:hover {
+			box-shadow: 0px 0px 20px rgb(0, 162, 255);
+		}
 
-			.content_l h5 {
+		.content_r {
+			float: right;
+			width: 500px;
+			margin: 80px 60px 0 0;
+			/*	background-color: pink;*/
+		}
 
-				font-size: 17px;
-			}
+		.content_l {
+			float: left;
+			width: 100%;
+			text-align: center;
+		}
 
-			.bio {
-				margin-top: 10px;
-				color: #1F2023;
-				font-size: 18px;
-			}
+		.content_l h5 {
 
-			.color_1 {
-				color: #4855EC;
-				font-size: 18px;
-			}
+			font-size: 17px;
+		}
 
-			.deeppink {
-				color: deeppink;
-			}
+		.bio {
+			margin-top: 10px;
+			color: #1F2023;
+			font-size: 18px;
+		}
 
-			.link {
-				margin-top: 30px;
-			}
+		.color_1 {
+			color: #4855EC;
+			font-size: 18px;
+		}
 
-			.link a {
-				display: block;
-				float: left;
-				width: 120px;
-				height: 45px;
-				margin: 5px 5px 0 0;
-				/*	padding: 0 15px;*/
-				color: #fff;
-				line-height: 45px;
-				transition: all 0.8s;
-				/*	background-color: deeppink;*/
+		.deeppink {
+			color: deeppink;
+		}
 
-			}
+		.link {
+			margin-top: 30px;
+		}
 
-			.link a:hover {
-				background-color: rgba(0, 0, 0, 0.35);
-                box-shadow: 0px 0px 20px rgb(61, 196, 230);
-			}
+		.link a {
+			display: block;
+			float: left;
+			width: 120px;
+			height: 45px;
+			margin: 5px 5px 0 0;
+			/*	padding: 0 15px;*/
+			color: #fff;
+			line-height: 45px;
+			transition: all 0.8s;
+			/*	background-color: deeppink;*/
 
-			.black {
-				background-color: rgb(36, 35, 35);
-			}
+		}
 
-			.dodgerblue {
-				background-color: dodgerblue;
-			}
+		.link a:hover {
+			background-color: rgba(0, 0, 0, 0.35);
+			box-shadow: 0px 0px 20px rgb(61, 196, 230);
+		}
 
-			.green {
-				background-color: rgb(0, 211, 248);
-			}
+		.black {
+			background-color: rgb(36, 35, 35);
+		}
 
-			.red {
-				background-color: rgb(216, 25, 25);
-			}
-		</style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3</title>
-        <meta name="title" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
-        <meta name="description" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
-        <meta name="author" content="HungChannels" />
-        <link rel="canonical" href="phungphihung.ddns.net" />
-        <meta property="og:title" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
-        <meta property="og:description" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
-        <meta property="og:image" content="https://phungphihung.ddns.net/hchannels-img/screenshot.png" />
-        <meta property="twitter:image" content="https://phungphihung.ddns.net/hchannels-img/screenshot.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="icon" href="./hchannels-img/avt.png" />
-	</head>
-	<body onclick="audio.play()">	
-		<video autoplay loop muted plays-inline class="video">
+		.dodgerblue {
+			background-color: dodgerblue;
+		}
+
+		.green {
+			background-color: rgb(0, 211, 248);
+		}
+
+		.red {
+			background-color: rgb(216, 25, 25);
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3< /title>
+			<meta name="title" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
+			<meta name="description" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
+			<meta name="author" content="HungChannels" />
+			<link rel="canonical" href="phungphihung.ddns.net" />
+			<meta property="og:title" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
+			<meta property="og:description" content="𝙋 𝙃 𝙐 𝙉 𝙂 𝙋 𝙃 𝙄 𝙃 𝙐 𝙉 𝙂 <3" />
+			<meta property="og:image" content="https://phungphihung.ddns.net/hchannels-img/screenshot.png" />
+			<meta property="twitter:image" content="https://phungphihung.ddns.net/hchannels-img/screenshot.png" />
+			<meta name="twitter:card" content="summary_large_image" />
+			<link rel="icon" href="./hchannels-img/avt.png" />
+</head>
+
+<body onclick="audio.play()">
+	<div class="video-background">
+		<video autoplay loop muted playsinline class="video">
 			<source src="./hchannels-img/What's it like to be a sweet couple.mp4" type="video/mp4">
 		</video>
-		<div class="content">
-			<img src="./hchannels-img/avt.png" alt="">
-			<div class="content_r clearfix">
-				<div class="content_l clearfix">
-					<h2>こんにちは、Phùng Phi Hùng さん、こんにちは <3</h2>
-					<p class="bio">You can't beat me because I'm your IT ... !</p>
-					<p class="bio">I will use my power ... !</p>
-					<br>
-					<p class="color_1">ＯＰＥＲＡＴＯＲ：ＰＨＵＮＧＰＨＩＨＵＮＧ＜３</p>
-					<!-- <p class="color_1"></p> -->
-					<br>
-					<p class="deeppink">/ phungphihung.ddns.net /</p>
-					<div class="link">
-						<a href="https://www.facebook.com/hungchannels.tv" class="dodgerblue" target="_blank"><i class="fa fa-facebook-square"></i> Facebook</a>
-						<a href="https://github.com/hungchannels123" class="black" target="_blank"><i class="fa fa-github"></i> Github</a>
-						<a href="https://t.me/hungchannels123" class="green" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i> Telegram</a>
-						<a href="https://www.youtube.com/@hungchannels" class="red" target="_blank"><i class="fa fa-youtube-play"></i> Youtube</a>
+	</div>
+	
+	<div class="content">
+		<img src="./hchannels-img/avt.png" alt="">
+		<div class="content_r clearfix">
+			<div class="content_l clearfix">
+				<h2>こんにちは、Phùng Phi Hùng さん、こんにちは <3</h2>
+				<p class="bio">You can't beat me because I'm your IT ... !</p>
+				<p class="bio">I will use my power ... !</p>
+				<br>
+				<p class="color_1">ＯＰＥＲＡＴＯＲ：ＰＨＵＮＧＰＨＩＨＵＮＧ＜３</p>
+				<!-- <p class="color_1"></p> -->
+				<br>
+				<p class="deeppink">/ phungphihung.ddns.net /</p>
+				<div class="link">
+					<a href="https://www.facebook.com/hungchannels.tv" class="dodgerblue" target="_blank"><i
+							class="fa fa-facebook-square"></i> Facebook</a>
+					<a href="https://github.com/hungchannels123" class="black" target="_blank"><i
+							class="fa fa-github"></i> Github</a>
+					<a href="https://t.me/hungchannels123" class="green" target="_blank"><i
+							class="fa fa-telegram" aria-hidden="true"></i> Telegram</a>
+					<a href="https://www.youtube.com/@hungchannels" class="red" target="_blank"><i
+							class="fa fa-youtube-play"></i> Youtube</a>
 				</div>
 			</div>
 		</div>
+
 		<script>
 			const HungChannels_List = [
-    			"./hungchannels/chayvenoiphiaanh.mp3",
+				"./hungchannels/chayvenoiphiaanh.mp3",
 				"./hungchannels/chrisbrowntheweeknd-undertheinfluencexiwasneverthere.mp3",
 				"./hungchannels/farizki-onekissxiwasneverthere.mp3",
-    			"./hungchannels/nhugiovoimay-dinhdaivu.mp3",
-    			"./hungchannels/tatu-allthethingsshesaid.mp3",
+				"./hungchannels/nhugiovoimay-dinhdaivu.mp3",
+				"./hungchannels/tatu-allthethingsshesaid.mp3",
 				"./hungchannels/theweekndxtorylanez-thehillsxcreepinxthecolorviolet.mp3",
-    			"./hungchannels/vovanduc-coaysechangbaogiobietdau.mp3"
+				"./hungchannels/vovanduc-coaysechangbaogiobietdau.mp3"
 			];
-			//Random music
+
 			let index = Math.floor(Math.random() * HungChannels_List.length);
 			const audio = new Audio(HungChannels_List[index]);
 			function HungChannelsAudio() {
-			   audio.play();
+				audio.play();
 			}
 			audio.loop = true;
 		</script>
-        <script>
 
-//▬▬▬▬▬▬▬▬▬▬
-   // HOA ANH DAO
-//▬▬▬▬▬▬▬▬▬▬
-var stop, staticx;
-var img = new Image();
-img.src = "https://i.imgur.com/R9XUjfF.png";
+		<script>
+			var stop, staticx;
+			var img = new Image();
+			img.src = "https://i.imgur.com/R9XUjfF.png";
 
 			function Sakura(x, y, s, r, fn) {
 				this.x = x;
@@ -207,7 +227,7 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				this.fn = fn;
 			}
 
-			Sakura.prototype.draw = function(cxt) {
+			Sakura.prototype.draw = function (cxt) {
 				cxt.save();
 				var xc = 40 * this.s / 4;
 				cxt.translate(this.x, this.y);
@@ -216,17 +236,17 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				cxt.restore();
 			}
 
-			Sakura.prototype.update = function() {
+			Sakura.prototype.update = function () {
 				this.x = this.fn.x(this.x, this.y);
 				this.y = this.fn.y(this.y, this.y);
 				this.r = this.fn.r(this.r);
-				if(this.x > window.innerWidth ||
+				if (this.x > window.innerWidth ||
 					this.x < 0 ||
 					this.y > window.innerHeight ||
 					this.y < 0
 				) {
 					this.r = getRandom('fnr');
-					if(Math.random() > 0.4) {
+					if (Math.random() > 0.4) {
 						this.x = getRandom('x');
 						this.y = 0;
 						this.s = getRandom('s');
@@ -240,32 +260,32 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				}
 			}
 
-			SakuraList = function() {
+			SakuraList = function () {
 				this.list = [];
 			}
-			SakuraList.prototype.push = function(sakura) {
+			SakuraList.prototype.push = function (sakura) {
 				this.list.push(sakura);
 			}
-			SakuraList.prototype.update = function() {
-				for(var i = 0, len = this.list.length; i < len; i++) {
+			SakuraList.prototype.update = function () {
+				for (var i = 0, len = this.list.length; i < len; i++) {
 					this.list[i].update();
 				}
 			}
-			SakuraList.prototype.draw = function(cxt) {
-				for(var i = 0, len = this.list.length; i < len; i++) {
+			SakuraList.prototype.draw = function (cxt) {
+				for (var i = 0, len = this.list.length; i < len; i++) {
 					this.list[i].draw(cxt);
 				}
 			}
-			SakuraList.prototype.get = function(i) {
+			SakuraList.prototype.get = function (i) {
 				return this.list[i];
 			}
-			SakuraList.prototype.size = function() {
+			SakuraList.prototype.size = function () {
 				return this.list.length;
 			}
 
 			function getRandom(option) {
 				var ret, random;
-				switch(option) {
+				switch (option) {
 					case 'x':
 						ret = Math.random() * window.innerWidth;
 						break;
@@ -280,19 +300,19 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 						break;
 					case 'fnx':
 						random = -0.5 + Math.random() * 1;
-						ret = function(x, y) {
+						ret = function (x, y) {
 							return x + 0.5 * random - 1;
 						};
 						break;
 					case 'fny':
 						random = 0.5 + Math.random() * 0.5
-						ret = function(x, y) {
+						ret = function (x, y) {
 							return y + random;
 						};
 						break;
 					case 'fnr':
 						random = Math.random() * 0.01;
-						ret = function(r) {
+						ret = function (r) {
 							return r + random;
 						};
 						break;
@@ -316,7 +336,7 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				document.getElementsByTagName('body')[0].appendChild(canvas);
 				cxt = canvas.getContext('2d');
 				var sakuraList = new SakuraList();
-				for(var i = 0; i < 50; i++) {
+				for (var i = 0; i < 50; i++) {
 					var sakura, randomX, randomY, randomS, randomR, randomFnx, randomFny;
 					randomX = getRandom('x');
 					randomY = getRandom('y');
@@ -333,7 +353,7 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 					sakura.draw(cxt);
 					sakuraList.push(sakura);
 				}
-				stop = requestAnimationFrame(function() {
+				stop = requestAnimationFrame(function () {
 					cxt.clearRect(0, 0, canvas.width, canvas.height);
 					sakuraList.update();
 					sakuraList.draw(cxt);
@@ -341,18 +361,18 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				})
 			}
 
-			window.onresize = function() {
+			window.onresize = function () {
 				var canvasSnow = document.getElementById('canvas_snow');
 				canvasSnow.width = window.innerWidth;
 				canvasSnow.height = window.innerHeight;
 			}
 
-			img.onload = function() {
+			img.onload = function () {
 				startSakura();
 			}
 
 			function stopp() {
-				if(staticx) {
+				if (staticx) {
 					var child = document.getElementById("canvas_sakura");
 					child.parentNode.removeChild(child);
 					window.cancelAnimationFrame(stop);
@@ -361,13 +381,8 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 					startSakura();
 				}
 			}
-		
-			
+		</script>
 
-
-//////////////////////////////////////////////////////////////
-
-        </script>
 		<script>
 			Swal.fire();
 
@@ -377,5 +392,6 @@ img.src = "https://i.imgur.com/R9XUjfF.png";
 				'success'
 			)
 		</script>
-	</body>
+</body>
+
 </html>
